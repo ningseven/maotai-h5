@@ -1,0 +1,37 @@
+{
+  "id": "1926815",
+  "name": "maotai-h5",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "1346764",
+      "name": "chengyi_pc_wechat",
+      "font_class": "weixin",
+      "unicode": "e60f",
+      "unicode_decimal": 58895
+    },
+    {
+      "icon_id": "15752188",
+      "name": "商城未选中",
+      "font_class": "shangcheng",
+      "unicode": "e7a9",
+      "unicode_decimal": 59305
+    },
+    {
+      "icon_id": "634046",
+      "name": "电话",
+      "font_class": "dianhua",
+      "unicode": "e66f",
+      "unicode_decimal": 58991
+    },
+    {
+      "icon_id": "3764367",
+      "name": "小房子",
+      "font_class": "qiye",
+      "unicode": "e616",
+      "unicode_decimal": 58902
+    }
+  ]
+}
