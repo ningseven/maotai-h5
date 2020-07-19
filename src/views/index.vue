@@ -1,6 +1,11 @@
 <template>
   <div class="index">
-    <img src="../assets/background.jpg" class="bgImg" alt />
+    <div class="imgBox">
+      <img src="../assets/background.jpg" class="bgImg" alt />
+      <div class="codeBox">
+        <span class="code">{{code}}</span>
+      </div>
+    </div>
     <!-- <img alt="Vue logo" class="testRem" src="../assets/logo.png" /> -->
     <!-- <span class="testSpan">哈哈哈</span> -->
     <van-row class="iconNav">
@@ -77,6 +82,7 @@
     </div>
 
     <van-action-sheet
+    class="telShow"
       v-model="telShow"
       :actions="actions"
       cancel-text="取消"
@@ -84,13 +90,17 @@
       close-on-click-action
       @select="callUp"
     />
+    <!-- <span>{{code}}</span> -->
+    <div class="rotateBox">
+      <van-icon name="point-gift-o" color="#CCCCCC" class="rotateIcon" />
+    </div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 // import HelloWorld from "@/components/HelloWorld.vue";
-
+import wx from 'weixin-js-sdk'
 export default {
   name: "index",
   components: {
@@ -99,8 +109,23 @@ export default {
   data() {
     return {
       telShow: false,
-      actions: [{ name: "400-622-9988", color: "#2065DB" }]
+      actions: [{ name: "400-622-9988", color: "#2065DB" }],
+      code: "No:10307074902574454134",
     };
+  },
+  created() {
+    console.log('1234576')
+    console.log(window.location)
+    console.log(this.is_weixn())
+    // let index = window.location.pathname.indexOf('=')
+    // this.code = window.location.pathname.slice(index + 1)
+    if (this.is_weixn()) {
+      let index = window.location.pathname.indexOf('=')
+      this.code = window.location.pathname.slice(index + 1)
+      this.share()
+    }else{
+      console.log('请在微信浏览器打开')
+    }
   },
   methods: {
     callUp(val) {
@@ -110,12 +135,92 @@ export default {
       a.setAttribute("href", "tel:400-622-9988");
       document.body.appendChild(a);
       a.click();
+    },
+    //判断是否是微信打开网页
+    is_weixn() {
+      var ua = navigator.userAgent.toLowerCase();
+      if (ua.match(/MicroMessenger/i) == "micromessenger") {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    //分享功能
+    share() {
+      console.log('初始化分享')
+      wx.config({
+        debug: false,
+        appId: 'wx00537536ae3be6e2',
+        timestamp: '1595147514',
+        nonceStr: 'E5GEnRJmhLcGXslY',
+        signature: '8e5be2b92357ec51c309873b9716ac1fa074c8ee',
+        jsApiList: [
+          'getLocation',//获取经纬度
+          'onMenuShareTimeline', //分享朋友圈
+          'onMenuShareAppMessage', //分享给好友
+          'onMenuShareQQ', //分享到QQ
+          'onMenuShareWeibo' //分享腾讯微博
+        ]
+      });
+      wx.ready(function () {
+        //分享到朋友圈
+        console.log('拉起分享')
+        wx.updateTimelineShareData({
+          title: "我想对你说",   // 分享时的标题
+          link: "http://super.gzzlfw.com/Home/Index?id=10307074902574454134&share=1",     // 分享时的链接
+          imgUrl: "http://super.gzzlfw.com/Content/image/share.jpg",    // 分享时的图标
+          success: function () {
+            console.log("分享成功");
+          },
+          cancel: function () {
+            console.log("取消分享");
+          }
+        });
+        //分享给朋友
+        wx.updateAppMessageShareData({
+          // title: tit,
+          // desc: '这件商品终于优惠了，每件只需' + pri_fx + '元',
+          title: "我想对你说",   // 分享时的标题
+          link: "http://super.gzzlfw.com/Home/Index?id=10307074902574454134&share=1",     // 分享时的链接
+          imgUrl: "http://super.gzzlfw.com/Content/image/share.jpg",    // 分享时的图标
+          type: '',
+          dataUrl: '',
+          success: function () {
+            console.log("分享成功");
+            // alert('分享成功')
+          },
+          cancel: function () {
+            console.log("取消分享");
+          }
+        });
+      })
+
     }
   }
 };
 </script>
+
+
 <style lang="scss" >
 .index {
+  .imgBox {
+    width: 100%;
+    position: relative;
+    padding-bottom: 0;
+    .codeBox {
+      position: absolute;
+      width: 100%;
+      bottom: 3px;
+      z-index: 6666;
+      text-align: center;
+      background-color: rgb(0, 0, 0, 0.4);
+      .code {
+        color: #fff;
+        font-weight: 300 !important;
+        font-size: 0.6rem;
+      }
+    }
+  }
   .testRem {
     width: 2rem;
   }
@@ -176,6 +281,43 @@ export default {
     .bottomImg {
       margin-bottom: 1.5rem;
     }
+  }
+  @-webkit-keyframes changeright {
+    0% {
+      -webkit-transform: rotate(0deg);
+    }
+
+    50% {
+      -webkit-transform: rotate(180deg);
+    }
+
+    100% {
+      -webkit-transform: rotate(360deg);
+    }
+  }
+
+  .rotateBox {
+    position: fixed;
+    // width: 1rem;
+    // font-weight: 300;
+    padding: 7px;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 50%;
+    top: 20px;
+    right: 5px;
+    -webkit-animation: changeright 10s linear infinite;
+
+    background-color: rgb(0, 0, 0, 0.5);
+    .rotateIcon {
+      font-size: 25px;
+    }
+  }
+  .telShow{
+    position: fixed;
+    bottom: 0;
   }
 }
 </style>

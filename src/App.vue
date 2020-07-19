@@ -15,7 +15,7 @@ export default {
   //    this.$nextTick(function() {
   //       // 适配不同屏幕，改变根font-size值
   //         if (document.documentElement.clientWidth <= document.documentElement.clientHeight) {
-  //             document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px';
+  //             document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + px';
   //         } else {
   //             document.documentElement.style.fontSize = document.documentElement.clientWidth / 13.34 + 'px';
   //         }
@@ -25,7 +25,11 @@ export default {
 </script>
 <style lang="scss">
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  // font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
+    sans-serif;
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   // text-align: center;
@@ -38,17 +42,17 @@ h2 {
   margin-top: 0 !important;
   margin-bottom: 0 !important;
 }
-.mt-2{
-  margin-top: .2rem;
+.mt-2 {
+  margin-top: 0.2rem;
 }
-.colorGray{
-  color: #908B8B;
+.colorGray {
+  color: #908b8b;
 }
-.fs-normal{
-  font-size: .34rem;
+.fs-normal {
+  font-size: 0.34rem;
 }
-.aJump{
-    color: #2c3e50!important
+.aJump {
+  color: #2c3e50 !important;
 }
 #nav {
   // padding: 30px;
