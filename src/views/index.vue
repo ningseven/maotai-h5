@@ -332,14 +332,14 @@ export default {
   }
   
 }
-.van-notify{
-  position: fixed!important;
-  top: 45%!important;
-  left: 42.5%!important;
-  width: 2.5rem!important;
-  height: 1rem;
-  border-radius: .1rem!important;
-}
+// .van-notify{
+//   position: fixed!important;
+//   top: 45%!important;
+//   left: 42.5%!important;
+//   width: 2.5rem!important;
+//   height: 1rem;
+//   border-radius: .1rem!important;
+// }
 // .message{
 //     position: fixed;
 //     top: 45%;
