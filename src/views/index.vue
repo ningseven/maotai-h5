@@ -120,12 +120,16 @@ export default {
     // let index = window.location.pathname.indexOf('=')
     // this.code = window.location.pathname.slice(index + 1)
     // if (this.is_weixn()) {i
-      let index = window.location.href.indexOf("=");
+    let index = window.location.href.indexOf("=");
 
-      this.code = window.location.href.slice(index + 1).substring(0, 23).replace('%',':');
-      this.share();
+    this.code = 'No:'+ window.location.href.slice(index +1).substring(0, 20);
+    // if (this.code.indexOf(":") == -1) {
+    //   this.code = this.code.replace("%", ":");
+    // }
+    // .replace('%',':')
+    this.share();
     // } else {
-      // console.log("请在微信浏览器打开");
+    // console.log("请在微信浏览器打开");
     // }
   },
   methods: {
@@ -331,7 +335,6 @@ export default {
     position: fixed;
     bottom: 0;
   }
-  
 }
 // .van-notify{
 //   position: fixed!important;
