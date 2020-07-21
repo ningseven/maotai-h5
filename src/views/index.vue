@@ -119,13 +119,14 @@ export default {
     console.log(this.is_weixn());
     // let index = window.location.pathname.indexOf('=')
     // this.code = window.location.pathname.slice(index + 1)
-    if (this.is_weixn()) {
+    // if (this.is_weixn()) {i
       let index = window.location.href.indexOf("=");
-      this.code = window.location.href.slice(index + 1).substring(0, 23);
+
+      this.code = window.location.href.slice(index + 1).substring(0, 23).replace('%',':');
       this.share();
-    } else {
-      console.log("请在微信浏览器打开");
-    }
+    // } else {
+      // console.log("请在微信浏览器打开");
+    // }
   },
   methods: {
     callUp(val) {
